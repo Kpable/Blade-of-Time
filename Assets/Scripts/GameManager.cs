@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour {
 
         if (gameTimer != null)
         {
-            Debug.Log(name + ": Game Timer is present");
+            //Debug.Log(name + ": Game Timer is present");
             gameTimer.OnSecondsChanged += HandleTimerSecondsChange;
             gameTimer.OnTimeUp += HandleTimerEnd;
 
@@ -34,14 +34,14 @@ public class GameManager : MonoBehaviour {
 
     private void HandleTimerEnd()
     {
-        Debug.Log(name + ": Time is Up!");
+        //Debug.Log(name + ": Time is Up!");
         gameTimerText.text = "0";
 
     }
 
     private void HandleTimerSecondsChange(int seconds)
     {
-        Debug.Log(name + ": Seconds Changed: " + seconds);
+        //Debug.Log(name + ": Seconds Changed: " + seconds);
         gameTimerText.text = seconds.ToString();
     }
 
