@@ -246,7 +246,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4539586344659028, guid: c6e632d00ae5e5c4fa67dff019628234, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4539586344659028, guid: c6e632d00ae5e5c4fa67dff019628234, type: 2}
       propertyPath: m_LocalPosition.z
@@ -277,6 +277,14 @@ Prefab:
       propertyPath: gameManagerObj
       value: 
       objectReference: {fileID: 820664978}
+    - target: {fileID: 4997994792667500, guid: c6e632d00ae5e5c4fa67dff019628234, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4997994792667500, guid: c6e632d00ae5e5c4fa67dff019628234, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c6e632d00ae5e5c4fa67dff019628234, type: 2}
   m_IsPrefabParent: 0

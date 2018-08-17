@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour {
     // Variables that affect the rotation of the player
     [HeaderAttribute("Rotation Variables")]
     public float cameraRadius = 0.001f;
+    public float directionOffset = 0f;
 
     void Start () {
         currentSpeed = walkSpeed;
@@ -48,7 +49,7 @@ public class PlayerMovement : MonoBehaviour {
             float angle = Mathf.Atan2(playerOnScreen.y - mouseOnScreen.y, playerOnScreen.x - mouseOnScreen.x) * Mathf.Rad2Deg;
 
             // Rotate
-            player.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle + 90));
+            player.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle + directionOffset));
         }
     }
 }
