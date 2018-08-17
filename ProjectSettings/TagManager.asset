@@ -41,3 +41,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Base
+    uniqueID: 3684003699
+    locked: 0
+  - name: Clothes
+    uniqueID: 2018965217
+    locked: 0
+  - name: Hair
+    uniqueID: 1663122437
+    locked: 0
+  - name: Armor
+    uniqueID: 24370591
+    locked: 0
+  - name: Weapons
+    uniqueID: 4224134209
+    locked: 0
