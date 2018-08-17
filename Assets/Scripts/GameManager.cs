@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
@@ -36,6 +37,7 @@ public class GameManager : MonoBehaviour {
     {
         //Debug.Log(name + ": Time is Up!");
         gameTimerText.text = "0";
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
     }
 
