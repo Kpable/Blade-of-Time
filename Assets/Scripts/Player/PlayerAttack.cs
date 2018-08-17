@@ -6,6 +6,8 @@ public class PlayerAttack : MonoBehaviour {
 
     private GameObject weapon;
 
+    private float attackSpeed = 1f;
+
     private void Awake()
     {
         weapon = transform.Find("PlayerSprites").Find("PlayerWeapon").gameObject;
