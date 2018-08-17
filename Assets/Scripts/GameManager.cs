@@ -7,11 +7,21 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
+    #region Public Variables
+
+    [HeaderAttribute("Dependencies")]
     public TextMeshProUGUI gameTimerText;
     
+    [HeaderAttribute("Game Settings")]
+    public float gameDuration = 300f; // 5 Minutes
+
+    #endregion
+
+    #region Private Variables
+
     private Timer gameTimer;
 
-    public float gameDuration = 300f; // 5 Minutes
+    #endregion
 
     private void Awake()
     {
