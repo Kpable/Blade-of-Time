@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -31,15 +32,55 @@ public class Graph : MonoBehaviour {
         }
     }
 
+    internal Node NodeFromWorldPoint(Vector3 startPos)
+    {
+        //Debug.Log(name + ": Looking for Node from " + startPos);
+        int x = Mathf.RoundToInt(startPos.x)-1;
+        int y = Mathf.RoundToInt(startPos.y)-1;
+        //Debug.Log(name + ": Choosing Node at " + "(" + x + ", " + y + ", 0)" + " Tile position: (" + 
+            //graph[x + GraphWidth / 2, y + GraphHeight / 2].X + ", " + graph[x + GraphWidth / 2, y + GraphHeight / 2].Y + ")");
+
+        
+        return graph[x + GraphWidth / 2, y + GraphHeight / 2];
+    }
+
+    internal List<Node> GetNeighbors(Node node)
+    {
+        List<Node> neighbors = new List<Node>();
+
+        for (int x = -1; x <= 1; x++)
+        {
+            for (int y = -1; y <= 1; y++)
+            {
+                // Skip this node
+                if (x == 0 && y == 0)
+                    continue;
+
+                int xCheck = node.GraphPosition.x + x;
+                int yCheck = node.GraphPosition.y + y; 
+
+                // If the position we're checking is greater than 0 but within the bounds of the graph size
+                if(xCheck >= 0 && xCheck < GraphWidth && 
+                    yCheck >=0 && yCheck < GraphHeight)
+                {
+                    neighbors.Add(graph[xCheck, yCheck]);
+                    Debug.Log(name + ": found neighbor for Node at " + "(" + node.WorldPosition + "): " + graph[xCheck, yCheck].WorldPosition)
+;                }
+            }
+        }
+        return neighbors;
+    }
+
     private void Awake()
     {
 
         graph = new Node[GraphWidth, GraphHeight];
         Assert.IsNotNull(groundTileMap, "GroundTilemap is null");
 
-        Debug.Log(name + ": GraphWidth:" + GraphWidth + ", GraphHeight:" + GraphHeight);
-    }
+        //Debug.Log(name + ": GraphWidth:" + GraphWidth + ", GraphHeight:" + GraphHeight);
+        CreateGraphFromTileMap(collisionTilemaps);
 
+    }
 
     void CreateGraphFromTileMap(List<Tilemap> collisionTileMaps)
     {
@@ -55,7 +96,7 @@ public class Graph : MonoBehaviour {
                 // if not, continue
                 if (tile == null)
                 {
-                    Debug.Log(name + ": Tile not found at position " + "(" + x + ", " + y + ", 0)");
+                    //Debug.Log(name + ": Tile not found at position " + "(" + x + ", " + y + ", 0)");
                 }
                 // if so detect if there are any collisions on this tile
                 else
@@ -84,8 +125,9 @@ public class Graph : MonoBehaviour {
 
 
                         // Create a node that is traversable if !collisionDetected; not traversable if collisionDetected
-                        Node node = new Node(x, y, !collisionDetected);
-                        Debug.Log(name + ": Adding node to graph position: " + "(" + (x + GraphWidth / 2 ) + ", " + (y + GraphHeight / 2) + ") with tile position at: " + "(" + x + ", " + y + ", 0)");
+                        //Node node = new Node(x, y, !collisionDetected);
+                        Node node = new Node(new Vector3(x, y), new Vector3Int(x + GraphWidth / 2, y + GraphHeight / 2, 0), !collisionDetected);
+                        //Debug.Log(name + ": Adding node to graph position: " + "(" + (x + GraphWidth / 2 ) + ", " + (y + GraphHeight / 2) + ") with tile position at: " + "(" + x + ", " + y + ", 0)");
 
                         graph[x + GraphWidth/2, y + GraphHeight / 2] = node;     // add node to the graph
 
@@ -127,7 +169,6 @@ public class Graph : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        CreateGraphFromTileMap(collisionTilemaps);
 
     }
 	

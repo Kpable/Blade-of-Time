@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour {
 
         if (gameTimer != null)
         {
-            Debug.Log(name + ": Game Timer is present");
+            //Debug.Log(name + ": Game Timer is present");
             gameTimer.OnSecondsChanged += HandleTimerSecondsChange;
             gameTimer.OnTimeUp += HandleTimerEnd;
 
