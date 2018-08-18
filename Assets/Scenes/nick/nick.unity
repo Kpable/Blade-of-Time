@@ -11588,7 +11588,7 @@ GameObject:
   - component: {fileID: 1434567890}
   - component: {fileID: 1434567889}
   m_Layer: 0
-  m_Name: Timer Text
+  m_Name: TimerText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

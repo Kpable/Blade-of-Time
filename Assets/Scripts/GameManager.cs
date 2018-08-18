@@ -22,11 +22,6 @@ public class GameManager : MonoBehaviour {
 
     #region Public Variables
 
-    [HeaderAttribute("Upgrade Targets")]
-    public PlayerStats playerStats;
-    public PlayerAttack playerAttack;
-    public PlayerMovement playerMovement;
-
     [HeaderAttribute("Game Settings")]
     public float gameDuration = 300f; // 5 Minutes
 
@@ -41,6 +36,10 @@ public class GameManager : MonoBehaviour {
     private Timer gameTimer;
     private TextMeshProUGUI gameTimerText;
 
+    private GameObject playerObj;
+    private PlayerStats playerStats;
+    private PlayerAttack playerAttack;
+    private PlayerMovement playerMovement;
 
     #endregion
 
@@ -59,7 +58,7 @@ public class GameManager : MonoBehaviour {
 
         if (gameTimer != null)
         {
-            //Debug.Log(name + ": Game Timer is present");
+            Debug.Log(name + ": Game Timer is present");
             gameTimer.OnSecondsChanged += HandleTimerSecondsChange;
             gameTimer.OnTimeUp += HandleTimerEnd;
 
@@ -85,13 +84,27 @@ public class GameManager : MonoBehaviour {
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        playerStats.TakeStats(stats);
-        playerAttack.TakeStats(stats);
-        playerMovement.TakeStats(stats);
+        // Find Player
+        playerObj = GameObject.Find("Player");
+        if (playerObj)
+        {
+            playerStats = playerObj.GetComponent<PlayerStats>();
+            playerAttack = playerObj.GetComponent<PlayerAttack>();
+            playerMovement = playerObj.GetComponent<PlayerMovement>();
+
+            playerStats.TakeStats(stats);
+            playerAttack.TakeStats(stats);
+            playerMovement.TakeStats(stats);
+        }
+        else
+        {
+            Debug.Log("GameManager Failed to find Player on scene reload");
+        }
 
         if (scene.name != "Menu")
         {
             gameTimerText = GameObject.Find("TimerText").GetComponent<TextMeshProUGUI>();
+            gameTimer.Set(gameDuration);
             ConfigureTimer();
         }
     }
