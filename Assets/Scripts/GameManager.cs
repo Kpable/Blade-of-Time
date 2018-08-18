@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour {
         if (gameTimerText) gameTimerText.text = gameDuration.ToString();
     }
 
-    private void HandleTimerEnd()
+    public void HandleTimerEnd()
     {
         //Debug.Log(name + ": Time is Up!");
         gameTimerText.text = "0";

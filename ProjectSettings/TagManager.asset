@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -47,9 +48,6 @@ TagManager:
   - name: Buildings
     uniqueID: 1390265123
     locked: 0
-  - name: Roofs
-    uniqueID: 2405206983
-    locked: 0
   - name: Base
     uniqueID: 3684003699
     locked: 0
@@ -65,6 +63,12 @@ TagManager:
   - name: Weapons
     uniqueID: 4224134209
     locked: 0
+  - name: Roofs
+    uniqueID: 2405206983
+    locked: 0
   - name: UI
     uniqueID: 26019319
+    locked: 0
+  - name: Enemy
+    uniqueID: 4143539353
     locked: 0
