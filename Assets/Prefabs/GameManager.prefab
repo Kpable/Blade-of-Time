@@ -53,7 +53,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameTimerText: {fileID: 0}
+  playerStats: {fileID: 0}
+  playerAttack: {fileID: 0}
+  playerMovement: {fileID: 0}
   gameDuration: 300
+  stats:
+    maxHealth: 100
+    damage: 1
+    attackSpeed: 1
+    weaponSize: 1
+    walkSpeed: 10
+    totalExp: 0
 --- !u!114 &114859640349375714
 MonoBehaviour:
   m_ObjectHideFlags: 1

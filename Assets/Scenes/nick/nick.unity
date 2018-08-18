@@ -10617,57 +10617,24 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!1 &249094397 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1836234767169928, guid: c6e632d00ae5e5c4fa67dff019628234,
+--- !u!114 &249094398 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114929278338889906, guid: c6e632d00ae5e5c4fa67dff019628234,
     type: 2}
   m_PrefabInternal: {fileID: 574769367}
---- !u!114 &249094398
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 249094397}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 742c35227d75a9a408d3a1840e8a4fff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &249094399
+--- !u!114 &249094399 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 249094397}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 114592030992112826, guid: c6e632d00ae5e5c4fa67dff019628234,
+    type: 2}
+  m_PrefabInternal: {fileID: 574769367}
   m_Script: {fileID: 11500000, guid: 212dbcef835141544a3b704597352bb2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameManager: {fileID: 364007697}
-  currentHealth: 100
-  maxHealth: 100
-  startPosition: {x: 0, y: 0, z: 0}
---- !u!50 &249094403
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 249094397}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+--- !u!114 &249094401 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114471863121249194, guid: c6e632d00ae5e5c4fa67dff019628234,
+    type: 2}
+  m_PrefabInternal: {fileID: 574769367}
+  m_Script: {fileID: 11500000, guid: 360bddadcdcfd5643ad68a2ea27ed12b, type: 3}
 --- !u!1 &337651917
 GameObject:
   m_ObjectHideFlags: 0
@@ -10927,6 +10894,11 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &364007695 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1714543166140470, guid: b361c9b2b3c860741ae4dcd60e29f725,
+    type: 2}
+  m_PrefabInternal: {fileID: 761764133}
 --- !u!114 &364007697 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114739124718354002, guid: b361c9b2b3c860741ae4dcd60e29f725,
@@ -10972,6 +10944,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114471863121249194, guid: c6e632d00ae5e5c4fa67dff019628234,
+        type: 2}
+      propertyPath: gameManagerObj
+      value: 
+      objectReference: {fileID: 364007695}
+    - target: {fileID: 114592030992112826, guid: c6e632d00ae5e5c4fa67dff019628234,
+        type: 2}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 364007697}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6e632d00ae5e5c4fa67dff019628234, type: 2}
   m_IsPrefabAsset: 0
@@ -11063,6 +11045,31 @@ Prefab:
       propertyPath: gameTimerText
       value: 
       objectReference: {fileID: 1434567889}
+    - target: {fileID: 114739124718354002, guid: b361c9b2b3c860741ae4dcd60e29f725,
+        type: 2}
+      propertyPath: playerStats
+      value: 
+      objectReference: {fileID: 249094399}
+    - target: {fileID: 114739124718354002, guid: b361c9b2b3c860741ae4dcd60e29f725,
+        type: 2}
+      propertyPath: playerAttack
+      value: 
+      objectReference: {fileID: 249094398}
+    - target: {fileID: 114739124718354002, guid: b361c9b2b3c860741ae4dcd60e29f725,
+        type: 2}
+      propertyPath: playerMovement
+      value: 
+      objectReference: {fileID: 249094401}
+    - target: {fileID: 114739124718354002, guid: b361c9b2b3c860741ae4dcd60e29f725,
+        type: 2}
+      propertyPath: stats.walkSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114739124718354002, guid: b361c9b2b3c860741ae4dcd60e29f725,
+        type: 2}
+      propertyPath: stats.attackSpeed
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b361c9b2b3c860741ae4dcd60e29f725, type: 2}
   m_IsPrefabAsset: 0

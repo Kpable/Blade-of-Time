@@ -10,28 +10,22 @@ public class PlayerStats : MonoBehaviour {
     [HeaderAttribute("Player Attributes")]
     public float currentHealth;
     public float maxHealth;
-    public Vector3 startPosition;
-
-    private static bool created = false;
-
-    void Awake()
-    {
-        if (!created)
-        {
-            DontDestroyOnLoad(this.gameObject);
-            startPosition = transform.position;
-            created = true;
-        }
-    }
+    public int experiencePoints;
 
     void Start () {
         currentHealth = maxHealth;
-        transform.position = startPosition;
 	}
 
 	void Update () {
 		
 	}
+
+    public void TakeStats(PlayerAttributes stats)
+    {
+        maxHealth = stats.maxHealth;
+        currentHealth = stats.maxHealth;
+        experiencePoints = stats.totalExp;
+    }
 
     public void AlterHealth(float amount)
     {

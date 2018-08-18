@@ -116,6 +116,9 @@ GameObject:
   - component: {fileID: 4539586344659028}
   - component: {fileID: 114471863121249194}
   - component: {fileID: 61398110080038518}
+  - component: {fileID: 50380548731017066}
+  - component: {fileID: 114929278338889906}
+  - component: {fileID: 114592030992112826}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -250,6 +253,26 @@ Transform:
   m_Father: {fileID: 4539586344659028}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &50380548731017066
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1836234767169928}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!61 &61398110080038518
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -292,6 +315,32 @@ MonoBehaviour:
   walkSpeed: 10
   cameraRadius: 0.001
   directionOffset: 180
+--- !u!114 &114592030992112826
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1836234767169928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 212dbcef835141544a3b704597352bb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  currentHealth: 100
+  maxHealth: 100
+  experiencePoints: 0
+--- !u!114 &114929278338889906
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1836234767169928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 742c35227d75a9a408d3a1840e8a4fff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212224870503244996
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -417,7 +466,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -70833087
-  m_SortingLayer: 8
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 0559db3751395b142b234d410b550e4c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -463,7 +512,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -610963597
-  m_SortingLayer: 4
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 4da5941d55bfcfb4eb3d4c99d7cea855, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

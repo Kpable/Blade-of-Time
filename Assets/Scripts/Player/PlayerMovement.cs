@@ -34,6 +34,11 @@ public class PlayerMovement : MonoBehaviour {
         transform.Translate(x, y, 0.0f);
     }
 
+    public void TakeStats(PlayerAttributes stats)
+    {
+        walkSpeed = stats.walkSpeed;
+    }
+
     //Throwing the rotation in the FixedUpdate means it won't be called when TimeScale == 0.
     void FixedUpdate()
     {

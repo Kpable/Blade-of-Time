@@ -5,17 +5,36 @@ using TMPro;
 using System;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour {
+[System.Serializable]
+public struct PlayerAttributes
+{
+    public float maxHealth;
+    public float damage;
+    public float attackSpeed;
+    public float weaponSize;
+    public float walkSpeed;
+    public int totalExp;
+}
 
+public class GameManager : MonoBehaviour {
+    
     public static GameManager Instance;
 
     #region Public Variables
 
     [HeaderAttribute("Dependencies")]
     public TextMeshProUGUI gameTimerText;
-    
+
+    [HeaderAttribute("Upgrade Targets")]
+    public PlayerStats playerStats;
+    public PlayerAttack playerAttack;
+    public PlayerMovement playerMovement;
+
     [HeaderAttribute("Game Settings")]
     public float gameDuration = 300f; // 5 Minutes
+
+    [HeaderAttribute("Player Stats")]
+    public PlayerAttributes stats;
 
     #endregion
 
@@ -52,6 +71,24 @@ public class GameManager : MonoBehaviour {
         }
 
         if (gameTimerText) gameTimerText.text = gameDuration.ToString();
+    }
+
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        playerStats.TakeStats(stats);
+        playerAttack.TakeStats(stats);
+        playerMovement.TakeStats(stats);
+
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     public void LoadMainMenu()

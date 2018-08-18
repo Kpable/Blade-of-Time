@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
+    [HeaderAttribute("Enemy Attributes")]
+    public float currentHealth;
+    public float maxHealth;
+
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
@@ -13,4 +17,20 @@ public class EnemyController : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    public void AlterHealth(float amount)
+    {
+        if (currentHealth + amount >= maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+        else if (currentHealth + amount <= 0)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            currentHealth += maxHealth;
+        }
+    }
 }
