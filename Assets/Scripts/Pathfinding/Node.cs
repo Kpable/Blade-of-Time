@@ -13,6 +13,9 @@ public class Node {
     int gCost;
     int hCost;
     public int fCost { get { return gCost + hCost; } }
+    public int X { get { return xPos; } }
+    public int Y { get { return yPos; } }
+    public bool Traversable { get { return traversable; } }
 
     public Node(int x, int y, bool traversable)
     {

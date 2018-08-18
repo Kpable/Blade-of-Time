@@ -103,6 +103,26 @@ public class Graph : MonoBehaviour {
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireCube(Vector3.zero, new Vector3(Mathf.Abs(scanFinishTopRight.x - scanStartBottomLeft.x), Mathf.Abs(scanFinishTopRight.y - scanStartBottomLeft.y)));
+
+
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        // draw graph
+        if (graph != null)
+        {
+            for (int x = 0; x < GraphWidth; x++)
+            {
+                for (int y = 0; y < GraphHeight; y++)
+                {
+                    // If a node is present
+                    if (graph[x, y] != null)
+                        Gizmos.DrawWireCube(new Vector3(graph[x, y].X + 0.5f, graph[x, y].Y + 0.5f), ((graph[x, y].Traversable) ? Vector3.one : Vector3.one * 0.5f));
+
+                }
+            }
+        }
     }
 
     // Use this for initialization
