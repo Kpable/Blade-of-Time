@@ -46,6 +46,11 @@ public class PlayerAttack : MonoBehaviour {
         swordSwingSequence.Pause();
     }
 
+    private void OnDestroy()
+    {
+        swordSwingSequence.Kill();
+    }
+
     // Use this for initialization
     void Start () {
 		

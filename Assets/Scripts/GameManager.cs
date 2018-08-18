@@ -22,9 +22,6 @@ public class GameManager : MonoBehaviour {
 
     #region Public Variables
 
-    [HeaderAttribute("Dependencies")]
-    public TextMeshProUGUI gameTimerText;
-
     [HeaderAttribute("Upgrade Targets")]
     public PlayerStats playerStats;
     public PlayerAttack playerAttack;
@@ -40,20 +37,23 @@ public class GameManager : MonoBehaviour {
 
     #region Private Variables
 
+
     private Timer gameTimer;
+    private TextMeshProUGUI gameTimerText;
+
 
     #endregion
 
     private void Awake()
     {
         // Make a singleton
-        if (Instance == null)
+        if (GameManager.Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(this);
         }
         else
-            Destroy(this);
+            Destroy(gameObject);
 
         gameTimer = GetComponent<Timer>();
 
@@ -63,13 +63,18 @@ public class GameManager : MonoBehaviour {
             gameTimer.OnSecondsChanged += HandleTimerSecondsChange;
             gameTimer.OnTimeUp += HandleTimerEnd;
 
-            gameTimer.Set(gameDuration, true);
+            gameTimer.Set(gameDuration);
         }
         else
         {
             Debug.LogError(name + ": Game Timer is null");
         }
 
+    }
+
+    private void ConfigureTimer()
+    {
+        gameTimer.StartTimer();
         if (gameTimerText) gameTimerText.text = gameDuration.ToString();
     }
 
@@ -84,11 +89,21 @@ public class GameManager : MonoBehaviour {
         playerAttack.TakeStats(stats);
         playerMovement.TakeStats(stats);
 
+        if (scene.name != "Menu")
+        {
+            gameTimerText = GameObject.Find("TimerText").GetComponent<TextMeshProUGUI>();
+            ConfigureTimer();
+        }
     }
 
     void OnDisable()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    public void LoadGame()
+    {
+        SceneManager.LoadScene("sample map");
     }
 
     public void LoadMainMenu()
