@@ -27,7 +27,7 @@ public class PauseMenu : MonoBehaviour {
     public void OnMainMenuButtonPressed()
     {
         Debug.Log(name + ": Main Menu Button Pressed");
-
+        GameManager.Instance.LoadMainMenu();
 
     }
 

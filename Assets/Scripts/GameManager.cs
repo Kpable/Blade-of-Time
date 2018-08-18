@@ -47,6 +47,11 @@ public class GameManager : MonoBehaviour {
         if (gameTimerText) gameTimerText.text = gameDuration.ToString();
     }
 
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene("Main Menu");
+    }
+
     public void HandleTimerEnd()
     {
         //Debug.Log(name + ": Time is Up!");
