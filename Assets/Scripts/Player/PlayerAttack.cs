@@ -5,7 +5,7 @@ using DG.Tweening;
 
 public class PlayerAttack : MonoBehaviour {
 
-    private GameObject weapon;
+    public GameObject weapon;
 
     private float attackSpeed = 1f;
     private bool canAttack = true;
@@ -16,14 +16,13 @@ public class PlayerAttack : MonoBehaviour {
     
     private void Awake()
     {
-        weapon = transform.Find("PlayerSprites").Find("PlayerWeapon").gameObject;
         if(weapon)
         {
             //Debug.Log(name + ": Weapon Found");
         }
         else
         {
-            //Debug.LogError(name + ": Weapon Not found");
+            weapon = transform.Find("PlayerSprites").Find("PlayerWeapon").gameObject;
         }
         
     }

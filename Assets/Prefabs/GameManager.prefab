@@ -53,9 +53,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameTimerText: {fileID: 0}
-  playerStats: {fileID: 0}
-  playerAttack: {fileID: 0}
-  playerMovement: {fileID: 0}
+  playerStats: {fileID: 114592030992112826, guid: c6e632d00ae5e5c4fa67dff019628234,
+    type: 2}
+  playerAttack: {fileID: 114929278338889906, guid: c6e632d00ae5e5c4fa67dff019628234,
+    type: 2}
+  playerMovement: {fileID: 114471863121249194, guid: c6e632d00ae5e5c4fa67dff019628234,
+    type: 2}
   gameDuration: 300
   stats:
     maxHealth: 100

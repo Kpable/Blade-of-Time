@@ -310,7 +310,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1407468810231456}
-  gameManagerObj: {fileID: 0}
+  gameManagerObj: {fileID: 1714543166140470, guid: b361c9b2b3c860741ae4dcd60e29f725,
+    type: 2}
   currentSpeed: 0
   walkSpeed: 10
   cameraRadius: 0.001
@@ -326,7 +327,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 212dbcef835141544a3b704597352bb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 0}
+  gameManager: {fileID: 114739124718354002, guid: b361c9b2b3c860741ae4dcd60e29f725,
+    type: 2}
   currentHealth: 100
   maxHealth: 100
   experiencePoints: 0
@@ -341,6 +343,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 742c35227d75a9a408d3a1840e8a4fff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weapon: {fileID: 1130244240161266}
 --- !u!212 &212224870503244996
 SpriteRenderer:
   m_ObjectHideFlags: 1
