@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/lesther/sample map.unity
+    guid: 5315c4455a04d384685babff62c7214e
+  - enabled: 1
+    path: Assets/Scenes/lesther/Menu.unity
+    guid: 8951280d2bf02674582f618dc09d22cd
   m_configObjects: {}

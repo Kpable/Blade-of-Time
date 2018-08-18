@@ -27,7 +27,14 @@ public class GameManager : MonoBehaviour {
 
     private void Awake()
     {
-        if (Instance == null) Instance = this;
+        // Make a singleton
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(this);
+        }
+        else
+            Destroy(this);
 
         gameTimer = GetComponent<Timer>();
 
@@ -49,7 +56,7 @@ public class GameManager : MonoBehaviour {
 
     public void LoadMainMenu()
     {
-        SceneManager.LoadScene("Main Menu");
+        SceneManager.LoadScene("Menu");
     }
 
     public void HandleTimerEnd()
