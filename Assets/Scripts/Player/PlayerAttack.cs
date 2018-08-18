@@ -26,9 +26,13 @@ public class PlayerAttack : MonoBehaviour {
 
         swordSwingSequence = DOTween.Sequence();
         swordSwingSequence
-            .Append(weapon.transform.DOLocalMoveY(0.15f, attackSpeed/3))
-            .Append(weapon.transform.DOLocalMoveY(-0.15f, attackSpeed/3))
-            .Append(weapon.transform.DOLocalMoveY(0f, attackSpeed/3));
+            .Append(weapon.transform.DOLocalMoveY(0.15f, attackSpeed/3)).SetEase(Ease.Flash)
+            .Join(weapon.transform.DOLocalRotate(Vector3.zero, attackSpeed/3))
+            .Append(weapon.transform.DOLocalMoveY(-0.15f, attackSpeed/3)).SetEase(Ease.Flash)
+            .Join(weapon.transform.DOLocalRotate(new Vector3(0, 0, -179), attackSpeed / 3))
+            .Append(weapon.transform.DOLocalMoveY(0f, attackSpeed/3)).SetEase(Ease.Flash)
+            .Join(weapon.transform.DOLocalRotate(new Vector3(0, 0, -90), attackSpeed / 3))
+            ;
         swordSwingSequence.Pause();
         
     }
