@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
+    public static GameManager Instance;
+
     #region Public Variables
 
     [HeaderAttribute("Dependencies")]
@@ -25,6 +27,8 @@ public class GameManager : MonoBehaviour {
 
     private void Awake()
     {
+        if (Instance == null) Instance = this;
+
         gameTimer = GetComponent<Timer>();
 
         if (gameTimer != null)
@@ -46,9 +50,14 @@ public class GameManager : MonoBehaviour {
     public void HandleTimerEnd()
     {
         //Debug.Log(name + ": Time is Up!");
+        HandleRunEnd();
+
+    }
+
+    public void HandleRunEnd()
+    {
         gameTimerText.text = "0";
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-
     }
 
     private void HandleTimerSecondsChange(int seconds)
