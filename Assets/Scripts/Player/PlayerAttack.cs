@@ -26,7 +26,10 @@ public class PlayerAttack : MonoBehaviour {
             weapon = transform.Find("PlayerSprites").Find("PlayerWeapon").gameObject;
         }
 
-        swordCon = weapon.GetComponent<SwordController>();
+        if (!swordCon)
+        {
+            swordCon = weapon.GetComponent<SwordController>();
+        }
 
     }
 
@@ -35,6 +38,11 @@ public class PlayerAttack : MonoBehaviour {
         attackSpeed = stats.attackSpeed;
         weaponSize = stats.weaponSize;
         damage = stats.damage;
+
+        if (!swordCon)
+        {
+            swordCon = weapon.GetComponent<SwordController>();
+        }
         swordCon.damage = damage;
 
     }

@@ -57,9 +57,9 @@ public class PlayerStats : MonoBehaviour {
 
     void OnTriggerStay2D(Collider2D col)
     {
-        if (col.gameObject.CompareTag("Enemy"))
+        if (col.gameObject.CompareTag("Enemy") && col.GetType() == typeof(BoxCollider2D))
         {
-            //Debug.Log("Colliding with enemy");
+            AlterHealth(-1);
         }
     }
 
