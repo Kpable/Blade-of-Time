@@ -53,19 +53,72 @@ public class Pathfinding : MonoBehaviour {
             if(node == targetNode)
             {
                 RetracePath(startNode, targetNode);
+                // Debug
+                for (int i = 0; i < graph.path.Count; i++)
+                {
+                    Debug.Log(name + ": Node to graph position: " + graph.path[i].GraphPosition  + " with tile position at: " + graph.path[i].WorldPosition);
+
+                }
+                // End Debug
                 return;
             }
 
             foreach (var neighbor in graph.GetNeighbors(node))
             {
+                if (neighbor == null) Debug.Log("no neighbor");
+                // If neighbor is not traversable or we've already processed it, move on
+                if (!neighbor.Traversable || closedSet.Contains(neighbor))
+                    continue;
 
+                int newNeighborCost = node.gCost + GetDistance(node, neighbor);
+                if(newNeighborCost < neighbor.gCost || !openSet.Contains(neighbor))
+                {
+                    neighbor.gCost = newNeighborCost;
+                    neighbor.hCost = GetDistance(neighbor, targetNode);
+                    neighbor.parent = node;
+
+                    if (!openSet.Contains(neighbor))
+                        openSet.Add(neighbor);
+                }
             }
         }
 
     }
 
+    private int GetDistance(Node node, Node neighbor)
+    {
+        // using multiply by 10 and 14 approach for calculations
+        // uses the Euclidean distance for diagonals which is ~1.4
+        int xDistance = Mathf.Abs(node.GraphPosition.x - neighbor.GraphPosition.x);
+        int yDistance = Mathf.Abs(node.GraphPosition.y - neighbor.GraphPosition.y);
+        //Debug.Log(name + ": Distance: " + "(" + xDistance  + ", " + yDistance + ")");
+        // This produces (1,0) (1, 1) or (0,1) pairs.
+        
+
+        if (xDistance > yDistance)
+        {
+            // (1, 0) 14 * 1 + 10 * (1 - 0) = 28           
+            return 14 * yDistance + 10 * (xDistance - yDistance);
+        }
+
+        // (0, 1) 14 * 0 + 10 * (1 - 0) = 10
+        // (1, 1) 14 * 1 + 10 * (1 - 1) = 14
+
+        return 14 * xDistance + 10 * (yDistance - xDistance);
+    }
+
     private void RetracePath(Node startNode, Node targetNode)
     {
-        throw new NotImplementedException();
+        List<Node> path = new List<Node>();
+        Node currentNode = targetNode;
+
+        while (currentNode != startNode)
+        {
+            path.Add(currentNode);
+            currentNode = currentNode.parent;
+        }
+        path.Reverse();
+
+        graph.path = path;
     }
 }

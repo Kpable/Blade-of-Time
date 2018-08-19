@@ -13,6 +13,7 @@ public class Graph : MonoBehaviour {
     public List<Tilemap> collisionTilemaps;
 
     Node[,] graph;
+    public List<Node> path;
 
     public int GraphWidth
     {
@@ -48,6 +49,7 @@ public class Graph : MonoBehaviour {
     {
         List<Node> neighbors = new List<Node>();
 
+        // get neighbors in all eight directions
         for (int x = -1; x <= 1; x++)
         {
             for (int y = -1; y <= 1; y++)
@@ -63,8 +65,19 @@ public class Graph : MonoBehaviour {
                 if(xCheck >= 0 && xCheck < GraphWidth && 
                     yCheck >=0 && yCheck < GraphHeight)
                 {
-                    neighbors.Add(graph[xCheck, yCheck]);
-                    Debug.Log(name + ": found neighbor for Node at " + "(" + node.WorldPosition + "): " + graph[xCheck, yCheck].WorldPosition)
+                    // Debug to check why there was null neighbors.
+                    // For nodes that do not have ground tiles as neighbors are null
+                    // Occurs when the scan area is greater than there is ground on the floor. 
+                    //if (graph[xCheck, yCheck] == null)
+                    //{
+                    //    Debug.Log("No Neighbor");
+                    //    Debug.Log(name + ": found neighbor for Node at " + "(" + node.WorldPosition + "): " + "(" + xCheck + ", " + yCheck + ")");
+
+                    //}
+
+                    if(graph[xCheck, yCheck] != null)
+                        neighbors.Add(graph[xCheck, yCheck]);
+                    //Debug.Log(name + ": found neighbor for Node at " + "(" + node.WorldPosition + "): " + graph[xCheck, yCheck].WorldPosition);
 ;                }
             }
         }
@@ -160,7 +173,19 @@ public class Graph : MonoBehaviour {
                 {
                     // If a node is present
                     if (graph[x, y] != null)
-                        Gizmos.DrawWireCube(new Vector3(graph[x, y].X + 0.5f, graph[x, y].Y + 0.5f), ((graph[x, y].Traversable) ? Vector3.one : Vector3.one * 0.5f));
+                    {
+                        Vector3 size = ((graph[x, y].Traversable) ? Vector3.one : Vector3.one * 0.5f);
+                        Color gizmoColor = ((graph[x, y].Traversable) ? Color.white : Color.red);
+                        if (path != null)
+                            if (path.Contains(graph[x, y]))
+                            {
+                                gizmoColor = Color.blue;
+                                size = Vector3.one * 0.8f;
+                            }
+                        Gizmos.color = gizmoColor;
+                        Gizmos.DrawWireCube(new Vector3(graph[x, y].X + 0.5f, graph[x, y].Y + 0.5f), size);
+
+                    }
 
                 }
             }

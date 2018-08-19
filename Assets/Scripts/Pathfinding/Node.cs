@@ -9,8 +9,8 @@ public class Node {
     bool traversable;
     Vector3 worldPos;
     Vector3Int graphPos;
-    Node parent;
 
+    public Node parent;
     public int gCost;
     public int hCost;
     public int fCost { get { return gCost + hCost; } }
