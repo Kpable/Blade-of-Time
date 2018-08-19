@@ -12,7 +12,6 @@ public class EnemyController : MonoBehaviour {
     public float currentSpeed = 0.0f;
 
     private Pathfinding pathfinding;
-    private float pathPointThreshhold = 0.7f;
 
     private void Awake()
     {

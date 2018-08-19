@@ -21,6 +21,7 @@ public class Pathfinding : MonoBehaviour {
 
         start = transform;
         target = GameObject.Find("Player").transform;
+        if (graph == null) graph = GameObject.Find("Graph").GetComponent<Graph>();
 
     }
 	
@@ -37,7 +38,8 @@ public class Pathfinding : MonoBehaviour {
         Node targetNode = graph.NodeFromWorldPoint(targetPos);
 
         // prevents changing the path if we happen to be starting closest to node thats not traversable
-        if (!startNode.Traversable) return;
+        if (!startNode.Traversable)
+            return;
 
         openSet = new List<Node>();
         closedSet = new List<Node>();
