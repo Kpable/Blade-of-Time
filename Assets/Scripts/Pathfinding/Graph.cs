@@ -160,10 +160,6 @@ public class Graph : MonoBehaviour {
         Gizmos.DrawWireCube(Vector3.zero, new Vector3(Mathf.Abs(scanFinishTopRight.x - scanStartBottomLeft.x), Mathf.Abs(scanFinishTopRight.y - scanStartBottomLeft.y)));
 
 
-    }
-
-    private void OnDrawGizmosSelected()
-    {
         // draw graph
         if (graph != null)
         {
@@ -190,6 +186,12 @@ public class Graph : MonoBehaviour {
                 }
             }
         }
+
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        
     }
 
     // Use this for initialization
