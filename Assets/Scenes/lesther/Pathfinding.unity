@@ -12087,11 +12087,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!4 &427439745 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4539586344659028, guid: c6e632d00ae5e5c4fa67dff019628234,
-    type: 2}
-  m_PrefabInternal: {fileID: 574769367}
 --- !u!1001 &574769367
 Prefab:
   m_ObjectHideFlags: 0
@@ -13718,11 +13713,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4431501364772708, guid: 9ad291bc322a367429d548ab5f8b7393, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -10.4
+      value: -6.81
       objectReference: {fileID: 0}
     - target: {fileID: 4431501364772708, guid: 9ad291bc322a367429d548ab5f8b7393, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 4.68
+      value: 6.7
       objectReference: {fileID: 0}
     - target: {fileID: 4431501364772708, guid: 9ad291bc322a367429d548ab5f8b7393, type: 2}
       propertyPath: m_LocalPosition.z
@@ -13748,33 +13743,14 @@ Prefab:
       propertyPath: m_RootOrder
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 114362083407294490, guid: 9ad291bc322a367429d548ab5f8b7393,
+        type: 2}
+      propertyPath: graph
+      value: 
+      objectReference: {fileID: 620079382}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ad291bc322a367429d548ab5f8b7393, type: 2}
   m_IsPrefabAsset: 0
---- !u!1 &1732878697 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1432580084093850, guid: 9ad291bc322a367429d548ab5f8b7393,
-    type: 2}
-  m_PrefabInternal: {fileID: 1732878696}
---- !u!114 &1732878698
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1732878697}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a4d4205cd32cc140bcf3a31ae279e92, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  graph: {fileID: 620079382}
-  startPosition: {fileID: 1732878700}
-  targetPosition: {fileID: 427439745}
---- !u!4 &1732878700 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4431501364772708, guid: 9ad291bc322a367429d548ab5f8b7393,
-    type: 2}
-  m_PrefabInternal: {fileID: 1732878696}
 --- !u!1 &1742242942
 GameObject:
   m_ObjectHideFlags: 0
