@@ -8,11 +8,14 @@ public class PlayerStats : MonoBehaviour {
     [HeaderAttribute("Dependencies")]
     public GameManager gameManager;
     public Slider healthSlider;
+    public Slider expSlider;
 
     [HeaderAttribute("Player Attributes")]
     public float currentHealth;
     public float maxHealth;
-    public int experiencePoints;
+    public float experiencePoints;
+    public float maxExp;
+    public int level = 1;
 
     void Start () {
         currentHealth = maxHealth;
@@ -27,7 +30,6 @@ public class PlayerStats : MonoBehaviour {
     {
         maxHealth = stats.maxHealth;
         currentHealth = stats.maxHealth;
-        experiencePoints = stats.totalExp;
         healthSlider.value = currentHealth;
     }
 
@@ -54,6 +56,22 @@ public class PlayerStats : MonoBehaviour {
         if (col.gameObject.CompareTag("Enemy"))
         {
             Debug.Log("Colliding with enemy");
+            gainExp(1);
         }
+    }
+
+    public void gainExp(float amount)
+    {
+        experiencePoints += amount;
+        if(experiencePoints > maxExp)
+        {
+            maxExp = gameManager.UpgradePlayer(maxExp);
+            experiencePoints = 0;
+            expSlider.maxValue = maxExp;
+            level++;
+
+        }
+
+        expSlider.value = experiencePoints;
     }
 }

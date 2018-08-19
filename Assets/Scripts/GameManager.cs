@@ -13,7 +13,6 @@ public struct PlayerAttributes
     public float attackSpeed;
     public float weaponSize;
     public float walkSpeed;
-    public int totalExp;
 }
 
 public class GameManager : MonoBehaviour {
@@ -26,6 +25,8 @@ public class GameManager : MonoBehaviour {
     public float gameDuration = 300f; // 5 Minutes
 
     [HeaderAttribute("Player Stats")]
+    public float statUpMin = 1.5f;
+    public float statUpMax = 2.0f;
     public PlayerAttributes stats;
 
     #endregion
@@ -86,6 +87,18 @@ public class GameManager : MonoBehaviour {
     {
         // Find Player
         playerObj = GameObject.Find("Player");
+        SendStats();
+
+        if (scene.name != "Menu")
+        {
+            gameTimerText = GameObject.Find("TimerText").GetComponent<TextMeshProUGUI>();
+            gameTimer.Set(gameDuration);
+            ConfigureTimer();
+        }
+    }
+
+    public void SendStats()
+    {
         if (playerObj)
         {
             playerStats = playerObj.GetComponent<PlayerStats>();
@@ -100,13 +113,19 @@ public class GameManager : MonoBehaviour {
         {
             Debug.Log("GameManager Failed to find Player on scene reload");
         }
+    }
 
-        if (scene.name != "Menu")
-        {
-            gameTimerText = GameObject.Find("TimerText").GetComponent<TextMeshProUGUI>();
-            gameTimer.Set(gameDuration);
-            ConfigureTimer();
-        }
+    public float UpgradePlayer(float currentExp)
+    {
+        float newMaxExp = currentExp * 1.2f;
+        stats.maxHealth *= UnityEngine.Random.Range(statUpMin, statUpMax);
+        stats.damage *= UnityEngine.Random.Range(statUpMin, statUpMax);
+        stats.attackSpeed -= UnityEngine.Random.Range(0.1f, 0.2f);
+        stats.weaponSize *= UnityEngine.Random.Range(statUpMin, statUpMax);
+        stats.walkSpeed *= UnityEngine.Random.Range(statUpMin, statUpMax);
+        SendStats();
+
+        return newMaxExp;
     }
 
     void OnDisable()
