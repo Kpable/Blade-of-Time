@@ -132,8 +132,23 @@ public class Pathfinding : MonoBehaviour {
 
         pathToFollow = path;
 
-        if(graph.path != null)
-            graph.path.Clear();
-        graph.path = path;
+        //if(graph.path != null)
+        //    graph.path.Clear();
+        //graph.path = path;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Color gizmoColor = Color.blue;
+        Vector3 size = Vector3.one * 0.8f;
+        Gizmos.color = gizmoColor;
+        // draw graph
+        if (pathToFollow != null)
+        {
+            foreach (var pathPoint in pathToFollow)
+            {
+                Gizmos.DrawWireCube(pathPoint.WorldPosition + new Vector3( 0.5f, 0.5f), size);                
+            }            
+        }
     }
 }

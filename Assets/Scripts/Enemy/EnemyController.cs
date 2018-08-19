@@ -35,12 +35,6 @@ public class EnemyController : MonoBehaviour {
             pathfinding.pathToFollow[0].WorldPosition + new Vector3(0.5f, 0.5f, 0),
             Time.deltaTime * currentSpeed);
 
-        //if (Vector3.Distance(currentPosition, pathfinding.pathToFollow[0].WorldPosition) <= pathPointThreshhold)
-        //    currentPosition = Vector3.MoveTowards(currentPosition,
-        //        pathfinding.pathToFollow[1].WorldPosition,
-        //        Time.deltaTime * currentSpeed);
-
-
         transform.position = currentPosition;
     }
 

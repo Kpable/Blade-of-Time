@@ -7,8 +7,8 @@ using UnityEngine.Tilemaps;
 
 public class Graph : MonoBehaviour {
 
-    public Vector2 scanStartBottomLeft;
-    public Vector2 scanFinishTopRight;
+    public Vector2Int scanStartBottomLeft;
+    public Vector2Int scanFinishTopRight;
     public Tilemap groundTileMap;               // we want this to know what within our scan is traversable
     public List<Tilemap> collisionTilemaps;
 
@@ -20,7 +20,7 @@ public class Graph : MonoBehaviour {
         get
         {
             // TODO some caching can be done here
-            return Mathf.RoundToInt(Mathf.Abs(scanFinishTopRight.x - scanStartBottomLeft.x));
+            return Mathf.FloorToInt(Mathf.Abs(scanFinishTopRight.x - scanStartBottomLeft.x));
         }
     }
 
@@ -29,17 +29,16 @@ public class Graph : MonoBehaviour {
         get
         {
             // TODO some caching can be done here
-            return Mathf.RoundToInt(Mathf.Abs(scanFinishTopRight.y - scanStartBottomLeft.y)); 
+            return Mathf.FloorToInt(Mathf.Abs(scanFinishTopRight.y - scanStartBottomLeft.y)); 
         }
     }
-
     internal Node NodeFromWorldPoint(Vector3 startPos)
     {
-        Debug.Log(name + ": Looking for Node from " + startPos);
+        //Debug.Log(name + ": Looking for Node from " + startPos);
         int x = Mathf.RoundToInt(startPos.x);
         int y = Mathf.RoundToInt(startPos.y);
-        Debug.Log(name + ": Choosing Node at " + "(" + x + ", " + y + ", 0)" + " Tile position: (" + 
-            graph[x + GraphWidth / 2, y + GraphHeight / 2].X + ", " + graph[x + GraphWidth / 2, y + GraphHeight / 2].Y + ")");
+        //Debug.Log(name + ": Choosing Node at " + "(" + x + ", " + y + ", 0)" + " Tile position: (" + 
+            //graph[x + GraphWidth / 2, y + GraphHeight / 2].X + ", " + graph[x + GraphWidth / 2, y + GraphHeight / 2].Y + ")");
 
         
         return graph[x + GraphWidth / 2, y + GraphHeight / 2];
@@ -90,7 +89,7 @@ public class Graph : MonoBehaviour {
         graph = new Node[GraphWidth, GraphHeight];
         Assert.IsNotNull(groundTileMap, "GroundTilemap is null");
 
-        //Debug.Log(name + ": GraphWidth:" + GraphWidth + ", GraphHeight:" + GraphHeight);
+        Debug.Log(name + ": GraphWidth:" + GraphWidth + ", GraphHeight:" + GraphHeight);
         CreateGraphFromTileMap(collisionTilemaps);
 
     }
@@ -140,7 +139,7 @@ public class Graph : MonoBehaviour {
                         // Create a node that is traversable if !collisionDetected; not traversable if collisionDetected
                         //Node node = new Node(x, y, !collisionDetected);
                         Node node = new Node(new Vector3(x, y), new Vector3Int(x + GraphWidth / 2, y + GraphHeight / 2, 0), !collisionDetected);
-                        //Debug.Log(name + ": Adding node to graph position: " + "(" + (x + GraphWidth / 2 ) + ", " + (y + GraphHeight / 2) + ") with tile position at: " + "(" + x + ", " + y + ", 0)");
+                        Debug.Log(name + ": Adding node to graph position: " + "(" + (x + GraphWidth / 2 ) + ", " + (y + GraphHeight / 2) + ") with tile position at: " + "(" + x + ", " + y + ", 0)");
 
                         graph[x + GraphWidth/2, y + GraphHeight / 2] = node;     // add node to the graph
 
@@ -157,9 +156,18 @@ public class Graph : MonoBehaviour {
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireCube(Vector3.zero, new Vector3(Mathf.Abs(scanFinishTopRight.x - scanStartBottomLeft.x), Mathf.Abs(scanFinishTopRight.y - scanStartBottomLeft.y)));
+        //Gizmos.DrawWireCube(Vector3.zero, new Vector3(Mathf.Abs(scanFinishTopRight.x - scanStartBottomLeft.x), Mathf.Abs(scanFinishTopRight.y - scanStartBottomLeft.y)));
+        Debug.DrawLine(new Vector3(scanStartBottomLeft.x, scanStartBottomLeft.y), new Vector3(scanStartBottomLeft.x, scanFinishTopRight.y));
+        Debug.DrawLine(new Vector3(scanStartBottomLeft.x, scanStartBottomLeft.y), new Vector3(scanFinishTopRight.x, scanStartBottomLeft.y));
+        Debug.DrawLine(new Vector3(scanFinishTopRight.x, scanFinishTopRight.y), new Vector3(scanFinishTopRight.x, scanStartBottomLeft.y));
+        Debug.DrawLine(new Vector3(scanFinishTopRight.x, scanFinishTopRight.y), new Vector3(scanStartBottomLeft.x, scanFinishTopRight.y));
 
+        
 
+    }
+
+    private void OnDrawGizmosSelected()
+    {
         // draw graph
         if (graph != null)
         {
@@ -186,12 +194,6 @@ public class Graph : MonoBehaviour {
                 }
             }
         }
-
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        
     }
 
     // Use this for initialization
