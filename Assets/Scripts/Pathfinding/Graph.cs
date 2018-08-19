@@ -7,8 +7,8 @@ using UnityEngine.Tilemaps;
 
 public class Graph : MonoBehaviour {
 
-    public Vector2 scanStartBottomLeft;
-    public Vector2 scanFinishTopRight;
+    public Vector2Int scanStartBottomLeft;
+    public Vector2Int scanFinishTopRight;
     public Tilemap groundTileMap;               // we want this to know what within our scan is traversable
     public List<Tilemap> collisionTilemaps;
 
@@ -32,7 +32,6 @@ public class Graph : MonoBehaviour {
             return Mathf.RoundToInt(Mathf.Abs(scanFinishTopRight.y - scanStartBottomLeft.y)); 
         }
     }
-
     internal Node NodeFromWorldPoint(Vector3 startPos)
     {
         //Debug.Log(name + ": Looking for Node from " + startPos);
@@ -42,7 +41,7 @@ public class Graph : MonoBehaviour {
             //graph[x + GraphWidth / 2, y + GraphHeight / 2].X + ", " + graph[x + GraphWidth / 2, y + GraphHeight / 2].Y + ")");
 
         
-        return graph[x + GraphWidth / 2, y + GraphHeight / 2];
+        return graph[x - scanStartBottomLeft.x, y - scanStartBottomLeft.y];
     }
 
     internal List<Node> GetNeighbors(Node node)
@@ -138,11 +137,13 @@ public class Graph : MonoBehaviour {
 
 
                         // Create a node that is traversable if !collisionDetected; not traversable if collisionDetected
-                        //Node node = new Node(x, y, !collisionDetected);
-                        Node node = new Node(new Vector3(x, y), new Vector3Int(x + GraphWidth / 2, y + GraphHeight / 2, 0), !collisionDetected);
+                        //Node node = new Node(new Vector3(x, y), new Vector3Int(x + GraphWidth / 2, y + GraphHeight / 2, 0), !collisionDetected);
+                        Node node = new Node(new Vector3(x, y), new Vector3Int(x - scanStartBottomLeft.x, y - scanStartBottomLeft.y, 0), !collisionDetected);
                         //Debug.Log(name + ": Adding node to graph position: " + "(" + (x + GraphWidth / 2 ) + ", " + (y + GraphHeight / 2) + ") with tile position at: " + "(" + x + ", " + y + ", 0)");
+                        //Debug.Log(name + ": Adding node to graph position: " + "(" + (x - scanStartBottomLeft.x) + ", " + (y - scanStartBottomLeft.y) + ") with tile position at: " + "(" + x + ", " + y + ", 0)");
 
-                        graph[x + GraphWidth/2, y + GraphHeight / 2] = node;     // add node to the graph
+                        //graph[x + GraphWidth/2, y + GraphHeight / 2] = node;     // add node to the graph
+                        graph[x - scanStartBottomLeft.x, y - scanStartBottomLeft.y] = node;     // add node to the graph
 
                         if (collisionDetected)
                         {
@@ -157,9 +158,18 @@ public class Graph : MonoBehaviour {
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireCube(Vector3.zero, new Vector3(Mathf.Abs(scanFinishTopRight.x - scanStartBottomLeft.x), Mathf.Abs(scanFinishTopRight.y - scanStartBottomLeft.y)));
+        //Gizmos.DrawWireCube(Vector3.zero, new Vector3(Mathf.Abs(scanFinishTopRight.x - scanStartBottomLeft.x), Mathf.Abs(scanFinishTopRight.y - scanStartBottomLeft.y)));
+        Debug.DrawLine(new Vector3(scanStartBottomLeft.x, scanStartBottomLeft.y), new Vector3(scanStartBottomLeft.x, scanFinishTopRight.y));
+        Debug.DrawLine(new Vector3(scanStartBottomLeft.x, scanStartBottomLeft.y), new Vector3(scanFinishTopRight.x, scanStartBottomLeft.y));
+        Debug.DrawLine(new Vector3(scanFinishTopRight.x, scanFinishTopRight.y), new Vector3(scanFinishTopRight.x, scanStartBottomLeft.y));
+        Debug.DrawLine(new Vector3(scanFinishTopRight.x, scanFinishTopRight.y), new Vector3(scanStartBottomLeft.x, scanFinishTopRight.y));
 
+        
 
+    }
+
+    private void OnDrawGizmosSelected()
+    {
         // draw graph
         if (graph != null)
         {
@@ -186,12 +196,6 @@ public class Graph : MonoBehaviour {
                 }
             }
         }
-
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        
     }
 
     // Use this for initialization

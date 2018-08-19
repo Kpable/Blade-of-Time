@@ -92,7 +92,7 @@ public class GameManager : MonoBehaviour {
         playerObj = GameObject.Find("Player");
         SendStats();
 
-        if (scene.name != "Menu")
+        if (scene.name != "Main Menu")
         {
             gameTimerText = GameObject.Find("TimerText").GetComponent<TextMeshProUGUI>();
             gameTimer.Set(gameDuration);
@@ -147,12 +147,12 @@ public class GameManager : MonoBehaviour {
 
     public void LoadGame()
     {
-        SceneManager.LoadScene("sample map");
+        SceneManager.LoadScene("Gameplay");
     }
 
     public void LoadMainMenu()
     {
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene("Main Menu");
     }
 
     public void HandleTimerEnd()

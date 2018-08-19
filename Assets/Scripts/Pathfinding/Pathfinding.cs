@@ -21,12 +21,14 @@ public class Pathfinding : MonoBehaviour {
 
         start = transform;
         target = GameObject.Find("Player").transform;
+        if (graph == null) graph = GameObject.Find("Graph").GetComponent<Graph>();
 
     }
 	
 	// Update is called once per frame
 	void Update () {
-        FindPath(start.position - offset, target.position - offset);
+        //if(pathToFollow == null || pathToFollow.Count == 0)
+        //    FindPath(start.position - offset, target.position - offset);
             
 	}
 
@@ -37,7 +39,8 @@ public class Pathfinding : MonoBehaviour {
         Node targetNode = graph.NodeFromWorldPoint(targetPos);
 
         // prevents changing the path if we happen to be starting closest to node thats not traversable
-        if (!startNode.Traversable) return;
+        if (!startNode.Traversable)
+            return;
 
         openSet = new List<Node>();
         closedSet = new List<Node>();
@@ -132,8 +135,41 @@ public class Pathfinding : MonoBehaviour {
 
         pathToFollow = path;
 
-        if(graph.path != null)
-            graph.path.Clear();
-        graph.path = path;
+        //if(graph.path != null)
+        //    graph.path.Clear();
+        //graph.path = path;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.name == "Player")
+        {
+           FindPath(start.position - offset, target.position - offset);
+
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.name == "Player")
+        {
+            FindPath(start.position - offset, target.position - offset);
+
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Color gizmoColor = Color.blue;
+        Vector3 size = Vector3.one * 0.8f;
+        Gizmos.color = gizmoColor;
+        // draw graph
+        if (pathToFollow != null)
+        {
+            foreach (var pathPoint in pathToFollow)
+            {
+                Gizmos.DrawWireCube(pathPoint.WorldPosition + new Vector3( 0.5f, 0.5f), size);                
+            }            
+        }
     }
 }

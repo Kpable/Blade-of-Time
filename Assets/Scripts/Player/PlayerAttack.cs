@@ -37,7 +37,16 @@ public class PlayerAttack : MonoBehaviour {
         damage = stats.damage;
         swordCon.damage = damage;
 
-swordSwingSequence = DOTween.Sequence();
+    }
+
+    private void OnDestroy()
+    {
+        swordSwingSequence.Kill();
+    }
+
+    // Use this for initialization
+    void Start () {
+        swordSwingSequence = DOTween.Sequence();
         swordSwingSequence
             .Append(weapon.transform.DOLocalMoveY(0.15f, attackSpeed / 3)).SetEase(Ease.Flash)
             .Join(weapon.transform.DOLocalRotate(Vector3.zero, attackSpeed / 3))
@@ -48,16 +57,6 @@ swordSwingSequence = DOTween.Sequence();
             ;
         swordSwingSequence.Pause();
     }
-
-    private void OnDestroy()
-    {
-        swordSwingSequence.Kill();
-    }
-
-    // Use this for initialization
-    void Start () {
-    
-	}
 	
 	// Update is called once per frame
 	void Update () {

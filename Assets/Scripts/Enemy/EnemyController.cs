@@ -16,9 +16,17 @@ public class EnemyController : MonoBehaviour {
     private float pathPointThreshhold = 0.7f;
     private GameObject player;
 
+    public float detectRadius = 10.0f;
+
+    private int pathIndex = 0;
+    private CircleCollider2D playerDetectCollider;
+
     private void Awake()
     {
         pathfinding = GetComponent<Pathfinding>();
+        playerDetectCollider = GetComponent<CircleCollider2D>();
+        playerDetectCollider.radius = detectRadius;
+
     }
     // Use this for initialization
     void Start () {
@@ -28,21 +36,28 @@ public class EnemyController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (pathfinding.pathToFollow != null && pathfinding.pathToFollow.Count >0) FollowPath();
+        if (pathfinding.pathToFollow != null && pathfinding.pathToFollow.Count >0)
+            FollowPath();
 	}
 
     private void FollowPath()
     {
         Vector3 currentPosition = transform.position;
+
+        if (pathfinding.pathToFollow[pathIndex].WorldPosition + new Vector3(0.5f, 0.5f, 0) == currentPosition)
+        {
+            pathIndex++;
+            if(pathIndex == pathfinding.pathToFollow.Count)
+            {
+                pathfinding.pathToFollow.Clear();
+                pathIndex = 0;
+                return;
+            }
+        }
+
         currentPosition = Vector3.MoveTowards(currentPosition,
-            pathfinding.pathToFollow[0].WorldPosition + new Vector3(0.5f, 0.5f, 0),
+            pathfinding.pathToFollow[pathIndex].WorldPosition + new Vector3(0.5f, 0.5f, 0),
             Time.deltaTime * currentSpeed);
-
-        //if (Vector3.Distance(currentPosition, pathfinding.pathToFollow[0].WorldPosition) <= pathPointThreshhold)
-        //    currentPosition = Vector3.MoveTowards(currentPosition,
-        //        pathfinding.pathToFollow[1].WorldPosition,
-        //        Time.deltaTime * currentSpeed);
-
 
         transform.position = currentPosition;
     }
