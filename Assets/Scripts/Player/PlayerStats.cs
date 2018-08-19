@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerStats : MonoBehaviour {
 
     [HeaderAttribute("Dependencies")]
     public GameManager gameManager;
+    public Slider healthSlider;
 
     [HeaderAttribute("Player Attributes")]
     public float currentHealth;
@@ -14,7 +16,8 @@ public class PlayerStats : MonoBehaviour {
 
     void Start () {
         currentHealth = maxHealth;
-	}
+        healthSlider.value = currentHealth;
+    }
 
 	void Update () {
 		
@@ -25,6 +28,7 @@ public class PlayerStats : MonoBehaviour {
         maxHealth = stats.maxHealth;
         currentHealth = stats.maxHealth;
         experiencePoints = stats.totalExp;
+        healthSlider.value = currentHealth;
     }
 
     public void AlterHealth(float amount)
@@ -32,6 +36,8 @@ public class PlayerStats : MonoBehaviour {
         if(currentHealth + amount >= maxHealth)
         {
             currentHealth = maxHealth;
+            healthSlider.value = currentHealth;
+
         } else if( currentHealth + amount <= 0)
         {
             gameManager.HandleTimerEnd();
@@ -39,6 +45,7 @@ public class PlayerStats : MonoBehaviour {
         else
         {
             currentHealth += maxHealth;
+            healthSlider.value = currentHealth;
         }
     }
 
