@@ -52,21 +52,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5852700eab19fa94badd9f7d82274899, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameTimerText: {fileID: 0}
-  playerStats: {fileID: 114592030992112826, guid: c6e632d00ae5e5c4fa67dff019628234,
-    type: 2}
-  playerAttack: {fileID: 114929278338889906, guid: c6e632d00ae5e5c4fa67dff019628234,
-    type: 2}
-  playerMovement: {fileID: 114471863121249194, guid: c6e632d00ae5e5c4fa67dff019628234,
-    type: 2}
-  gameDuration: 300
+  gameDuration: 10
+  statUpMin: 1.2
+  statUpMax: 1.4
   stats:
     maxHealth: 100
     damage: 1
     attackSpeed: 1
     weaponSize: 1
     walkSpeed: 10
-    totalExp: 0
+    currentExp: 0
+    maxExp: 100
+    level: 1
 --- !u!114 &114859640349375714
 MonoBehaviour:
   m_ObjectHideFlags: 1

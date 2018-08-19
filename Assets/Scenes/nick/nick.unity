@@ -94936,6 +94936,11 @@ Prefab:
       propertyPath: maxExp
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 50380548731017066, guid: c6e632d00ae5e5c4fa67dff019628234,
+        type: 2}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6e632d00ae5e5c4fa67dff019628234, type: 2}
   m_IsPrefabAsset: 0
@@ -95394,16 +95399,6 @@ Prefab:
     - target: {fileID: 4514813619334348, guid: b361c9b2b3c860741ae4dcd60e29f725, type: 2}
       propertyPath: m_RootOrder
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114739124718354002, guid: b361c9b2b3c860741ae4dcd60e29f725,
-        type: 2}
-      propertyPath: gameTimerText
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114739124718354002, guid: b361c9b2b3c860741ae4dcd60e29f725,
-        type: 2}
-      propertyPath: gameDuration
-      value: 300
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b361c9b2b3c860741ae4dcd60e29f725, type: 2}

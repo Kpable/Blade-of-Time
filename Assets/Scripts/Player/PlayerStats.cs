@@ -20,6 +20,7 @@ public class PlayerStats : MonoBehaviour {
     void Start () {
         currentHealth = maxHealth;
         healthSlider.value = currentHealth;
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
 	void Update () {
@@ -31,6 +32,9 @@ public class PlayerStats : MonoBehaviour {
         maxHealth = stats.maxHealth;
         currentHealth = stats.maxHealth;
         healthSlider.value = currentHealth;
+        experiencePoints = stats.currentExp;
+        expSlider.value = stats.currentExp;
+        expSlider.maxValue = stats.maxExp;
     }
 
     public void AlterHealth(float amount)
@@ -73,5 +77,6 @@ public class PlayerStats : MonoBehaviour {
         }
 
         expSlider.value = experiencePoints;
+        gameManager.setExp(experiencePoints);
     }
 }

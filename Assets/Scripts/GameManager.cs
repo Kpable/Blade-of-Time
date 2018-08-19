@@ -13,6 +13,9 @@ public struct PlayerAttributes
     public float attackSpeed;
     public float weaponSize;
     public float walkSpeed;
+    public float currentExp;
+    public float maxExp;
+    public int level;
 }
 
 public class GameManager : MonoBehaviour {
@@ -25,8 +28,8 @@ public class GameManager : MonoBehaviour {
     public float gameDuration = 300f; // 5 Minutes
 
     [HeaderAttribute("Player Stats")]
-    public float statUpMin = 1.5f;
-    public float statUpMax = 2.0f;
+    public float statUpMin = 1.2f;
+    public float statUpMax = 1.4f;
     public PlayerAttributes stats;
 
     #endregion
@@ -123,9 +126,18 @@ public class GameManager : MonoBehaviour {
         stats.attackSpeed -= UnityEngine.Random.Range(0.1f, 0.2f);
         stats.weaponSize *= UnityEngine.Random.Range(statUpMin, statUpMax);
         stats.walkSpeed *= UnityEngine.Random.Range(statUpMin, statUpMax);
+        stats.currentExp = 0;
+        stats.maxExp = newMaxExp;
+        stats.level += 1;
+
         SendStats();
 
         return newMaxExp;
+    }
+
+    public void setExp(float amount)
+    {
+        stats.currentExp = amount;
     }
 
     void OnDisable()

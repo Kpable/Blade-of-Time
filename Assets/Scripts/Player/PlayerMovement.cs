@@ -6,7 +6,6 @@ public class PlayerMovement : MonoBehaviour {
 
     [HeaderAttribute("Dependencies")]
     public GameObject player;
-    public GameObject gameManagerObj;
 
     // Variables that affect the movement of the player
     [HeaderAttribute("Movement Variables")]
@@ -36,7 +35,7 @@ public class PlayerMovement : MonoBehaviour {
 
     public void TakeStats(PlayerAttributes stats)
     {
-        walkSpeed = stats.walkSpeed;
+        currentSpeed = stats.walkSpeed;
     }
 
     //Throwing the rotation in the FixedUpdate means it won't be called when TimeScale == 0.
