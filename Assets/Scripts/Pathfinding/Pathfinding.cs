@@ -8,9 +8,10 @@ public class Pathfinding : MonoBehaviour {
     List<Node> openSet;
     List<Node> closedSet;
 
-
     public Graph graph;
     public Transform startPosition, targetPosition;
+
+    List<Node> pathToFollow;
 
     private void Awake()
     {
@@ -20,12 +21,17 @@ public class Pathfinding : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        FindPath(startPosition.position, targetPosition.position);
+        //FindPath(startPosition.position, targetPosition.position);
+
+        startPosition = transform;
+        targetPosition = GameObject.Find("Player").transform;
+
     }
 	
 	// Update is called once per frame
 	void Update () {
-        //FindPath(startPosition.position, targetPosition.position);
+        FindPath(startPosition.position, targetPosition.position);
+            
 	}
 
     private void FindPath(Vector3 startPos, Vector3 targetPos)
@@ -54,11 +60,11 @@ public class Pathfinding : MonoBehaviour {
             {
                 RetracePath(startNode, targetNode);
                 // Debug
-                for (int i = 0; i < graph.path.Count; i++)
-                {
-                    Debug.Log(name + ": Node to graph position: " + graph.path[i].GraphPosition  + " with tile position at: " + graph.path[i].WorldPosition);
+                //for (int i = 0; i < graph.path.Count; i++)
+                //{
+                //    Debug.Log(name + ": Node to graph position: " + graph.path[i].GraphPosition  + " with tile position at: " + graph.path[i].WorldPosition);
 
-                }
+                //}
                 // End Debug
                 return;
             }
@@ -118,6 +124,7 @@ public class Pathfinding : MonoBehaviour {
             currentNode = currentNode.parent;
         }
         path.Reverse();
+        pathToFollow = path;
 
         graph.path = path;
     }
