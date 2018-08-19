@@ -13,6 +13,8 @@ public class Pathfinding : MonoBehaviour {
 
     public List<Node> pathToFollow;
 
+    Vector3 offset = new Vector3(0.5f, 0.5f, 0f);
+
     // Use this for initialization
     void Start () {
         //FindPath(startPosition.position, targetPosition.position);
@@ -24,7 +26,7 @@ public class Pathfinding : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        FindPath(start.position, target.position);
+        FindPath(start.position - offset, target.position - offset);
             
 	}
 
@@ -33,9 +35,12 @@ public class Pathfinding : MonoBehaviour {
         //Debug.Log(name +  ": Finding path");
         Node startNode = graph.NodeFromWorldPoint(startPos);
         Node targetNode = graph.NodeFromWorldPoint(targetPos);
+
+        // prevents changing the path if we happen to be starting closest to node thats not traversable
+        if (!startNode.Traversable) return;
+
         openSet = new List<Node>();
         closedSet = new List<Node>();
-
 
         openSet.Add(startNode);
 

@@ -12,6 +12,7 @@ public class EnemyController : MonoBehaviour {
     public float currentSpeed = 0.0f;
 
     private Pathfinding pathfinding;
+    private float pathPointThreshhold = 0.7f;
 
     private void Awake()
     {
@@ -24,23 +25,23 @@ public class EnemyController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (pathfinding.pathToFollow != null) FollowPath();
+        if (pathfinding.pathToFollow != null && pathfinding.pathToFollow.Count >0) FollowPath();
 	}
 
     private void FollowPath()
     {
-        //Vector3 currentPosition = transform.position;
-        
-        //if(currentPosition == pathfinding.pathToFollow[0].WorldPosition)
+        Vector3 currentPosition = transform.position;
+        currentPosition = Vector3.MoveTowards(currentPosition,
+            pathfinding.pathToFollow[0].WorldPosition + new Vector3(0.5f, 0.5f, 0),
+            Time.deltaTime * currentSpeed);
+
+        //if (Vector3.Distance(currentPosition, pathfinding.pathToFollow[0].WorldPosition) <= pathPointThreshhold)
         //    currentPosition = Vector3.MoveTowards(currentPosition,
         //        pathfinding.pathToFollow[1].WorldPosition,
         //        Time.deltaTime * currentSpeed);
-        //else
-        //    currentPosition = Vector3.MoveTowards(currentPosition,
-        //        pathfinding.pathToFollow[0].WorldPosition,
-        //        Time.deltaTime * currentSpeed);
 
-        //transform.position = currentPosition;
+
+        transform.position = currentPosition;
     }
 
     public void AlterHealth(float amount)
