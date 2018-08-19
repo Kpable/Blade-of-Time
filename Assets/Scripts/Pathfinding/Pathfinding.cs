@@ -27,7 +27,8 @@ public class Pathfinding : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        FindPath(start.position - offset, target.position - offset);
+        //if(pathToFollow == null || pathToFollow.Count == 0)
+        //    FindPath(start.position - offset, target.position - offset);
             
 	}
 
@@ -137,6 +138,24 @@ public class Pathfinding : MonoBehaviour {
         //if(graph.path != null)
         //    graph.path.Clear();
         //graph.path = path;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.name == "Player")
+        {
+           FindPath(start.position - offset, target.position - offset);
+
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.name == "Player")
+        {
+            FindPath(start.position - offset, target.position - offset);
+
+        }
     }
 
     private void OnDrawGizmosSelected()
