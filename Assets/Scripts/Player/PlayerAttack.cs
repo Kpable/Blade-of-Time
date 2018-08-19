@@ -11,6 +11,7 @@ public class PlayerAttack : MonoBehaviour {
     private bool canAttack = true;
     private float damage = 1f;
     private float weaponSize = 1f;
+    private SwordController swordCon;
 
     private Sequence swordSwingSequence;
     
@@ -24,7 +25,9 @@ public class PlayerAttack : MonoBehaviour {
         {
             weapon = transform.Find("PlayerSprites").Find("PlayerWeapon").gameObject;
         }
-        
+
+        swordCon = weapon.GetComponent<SwordController>();
+
     }
 
     public void TakeStats(PlayerAttributes stats)
@@ -32,8 +35,9 @@ public class PlayerAttack : MonoBehaviour {
         attackSpeed = stats.attackSpeed;
         weaponSize = stats.weaponSize;
         damage = stats.damage;
+        swordCon.damage = damage;
 
-        swordSwingSequence = DOTween.Sequence();
+swordSwingSequence = DOTween.Sequence();
         swordSwingSequence
             .Append(weapon.transform.DOLocalMoveY(0.15f, attackSpeed / 3)).SetEase(Ease.Flash)
             .Join(weapon.transform.DOLocalRotate(Vector3.zero, attackSpeed / 3))
@@ -52,7 +56,7 @@ public class PlayerAttack : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		
+    
 	}
 	
 	// Update is called once per frame
@@ -60,10 +64,12 @@ public class PlayerAttack : MonoBehaviour {
         
         if (Input.GetMouseButtonDown(0) && canAttack)
         {
-            Debug.Log(name + ": Swingin my sword!");
+            //Debug.Log(name + ": Swingin my sword!");
             canAttack = false;
+            swordCon.isActive = true;
             //weapon.transform.DOMoveY(weapon.transform.position.x - 0.15f, attackSpeed);
-            swordSwingSequence.Play().OnComplete(() => { canAttack = true; swordSwingSequence.Rewind(); });
+            swordSwingSequence.Play().OnComplete(() => { canAttack = true; swordSwingSequence.Rewind(); swordCon.isActive = false; });
         }
 	}
+
 }

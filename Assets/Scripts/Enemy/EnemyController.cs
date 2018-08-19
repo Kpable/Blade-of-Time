@@ -10,9 +10,11 @@ public class EnemyController : MonoBehaviour {
     public float maxHealth;
     public float walkSpeed = 10.0f;
     public float currentSpeed = 0.0f;
+    public float expReward = 25f;
 
     private Pathfinding pathfinding;
     private float pathPointThreshhold = 0.7f;
+    private GameObject player;
 
     private void Awake()
     {
@@ -21,6 +23,7 @@ public class EnemyController : MonoBehaviour {
     // Use this for initialization
     void Start () {
         currentSpeed = walkSpeed;
+        player = GameObject.Find("Player");
     }
 	
 	// Update is called once per frame
@@ -52,11 +55,12 @@ public class EnemyController : MonoBehaviour {
         }
         else if (currentHealth + amount <= 0)
         {
+            player.GetComponent<PlayerStats>().GainExp(expReward);
             Destroy(this.gameObject);
         }
         else
         {
-            currentHealth += maxHealth;
+            currentHealth += amount;
         }
     }
 }

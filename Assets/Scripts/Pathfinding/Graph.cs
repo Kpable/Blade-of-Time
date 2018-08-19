@@ -35,11 +35,11 @@ public class Graph : MonoBehaviour {
 
     internal Node NodeFromWorldPoint(Vector3 startPos)
     {
-        Debug.Log(name + ": Looking for Node from " + startPos);
+        //Debug.Log(name + ": Looking for Node from " + startPos);
         int x = Mathf.RoundToInt(startPos.x);
         int y = Mathf.RoundToInt(startPos.y);
-        Debug.Log(name + ": Choosing Node at " + "(" + x + ", " + y + ", 0)" + " Tile position: (" + 
-            graph[x + GraphWidth / 2, y + GraphHeight / 2].X + ", " + graph[x + GraphWidth / 2, y + GraphHeight / 2].Y + ")");
+        //Debug.Log(name + ": Choosing Node at " + "(" + x + ", " + y + ", 0)" + " Tile position: (" + 
+            //graph[x + GraphWidth / 2, y + GraphHeight / 2].X + ", " + graph[x + GraphWidth / 2, y + GraphHeight / 2].Y + ")");
 
         
         return graph[x + GraphWidth / 2, y + GraphHeight / 2];

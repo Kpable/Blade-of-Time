@@ -59,12 +59,11 @@ public class PlayerStats : MonoBehaviour {
     {
         if (col.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log("Colliding with enemy");
-            gainExp(1);
+            //Debug.Log("Colliding with enemy");
         }
     }
 
-    public void gainExp(float amount)
+    public void GainExp(float amount)
     {
         experiencePoints += amount;
         if(experiencePoints > maxExp)
