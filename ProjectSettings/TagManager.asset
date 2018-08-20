@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -40,4 +41,34 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Ground
+    uniqueID: 2664421035
+    locked: 0
+  - name: Buildings
+    uniqueID: 1390265123
+    locked: 0
+  - name: Base
+    uniqueID: 3684003699
+    locked: 0
+  - name: Clothes
+    uniqueID: 2018965217
+    locked: 0
+  - name: Hair
+    uniqueID: 1663122437
+    locked: 0
+  - name: Armor
+    uniqueID: 24370591
+    locked: 0
+  - name: Weapons
+    uniqueID: 4224134209
+    locked: 0
+  - name: Roofs
+    uniqueID: 2405206983
+    locked: 0
+  - name: UI
+    uniqueID: 26019319
+    locked: 0
+  - name: Enemy
+    uniqueID: 4143539353
     locked: 0
